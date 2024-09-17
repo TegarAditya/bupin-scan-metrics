@@ -1,9 +1,13 @@
-FROM golang:1.23.1
+FROM golang:alpine
 
-WORKDIR /usr/src/app
+RUN apk update && apk add --no-cache git
+
+WORKDIR /app
 
 COPY . .
 
 RUN go mod tidy
 
-EXPOSE 3030
+RUN go build -o binary
+
+ENTRYPOINT ["/app/binary"]
