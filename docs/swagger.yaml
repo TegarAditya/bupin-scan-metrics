@@ -1,0 +1,160 @@
+basePath: /api
+definitions:
+  models.ScanMetric:
+    properties:
+      _id:
+        type: string
+      contentId:
+        type: string
+      deviceId:
+        type: string
+      userId:
+        type: string
+    type: object
+info:
+  contact:
+    email: dinopuguh@gmail.com
+    name: Tegar Aditya
+  description: This is an API for Scan Metrics
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Scan Metrics API
+  version: "1.0"
+paths:
+  /scanmetrics:
+    get:
+      consumes:
+      - application/json
+      description: get all metrics
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.ScanMetric'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Show all metrics
+      tags:
+      - metric
+    post:
+      consumes:
+      - application/json
+      description: create a metric
+      parameters:
+      - description: ScanMetric object
+        in: body
+        name: scanMetric
+        required: true
+        schema:
+          $ref: '#/definitions/models.ScanMetric'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.ScanMetric'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Create a metric
+      tags:
+      - metric
+  /scanmetrics/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete a metric
+      parameters:
+      - description: scan metric ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Delete a metric
+      tags:
+      - metric
+    get:
+      consumes:
+      - application/json
+      description: get metric by ID
+      parameters:
+      - description: scan metric ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ScanMetric'
+        "400":
+          description: Bad Request
+          schema: {}
+        "404":
+          description: Not Found
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Show a metric
+      tags:
+      - metric
+    put:
+      consumes:
+      - application/json
+      description: update a metric
+      parameters:
+      - description: scan metric ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: ScanMetric object
+        in: body
+        name: scanMetric
+        required: true
+        schema:
+          $ref: '#/definitions/models.ScanMetric'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ScanMetric'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: Update a metric
+      tags:
+      - metric
+swagger: "2.0"

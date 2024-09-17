@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3030:3030"
+    volumes:
+      - .:/usr/src/app
+    command: go run main.go -b 0.0.0.0
+    restart: unless-stopped
